@@ -568,7 +568,8 @@
             });
         });
 
-        // 動態連動邏輯：無法出席時隱藏人數與飲食
+
+     // 動態連動邏輯：無法出席時隱藏人數與飲食
         const attendanceSelect = document.getElementById('entry_473265525');
         const attendanceDetails = document.getElementById('attendance-details');
 
@@ -589,6 +590,35 @@
 
         attendanceSelect.addEventListener('change', checkDynamicFields);
         checkDynamicFields();
+
+        // 網頁背景音樂控制邏輯
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggleBtn = document.getElementById('musicToggleBtn');
+        const musicIcon = document.getElementById('musicIcon');
+        const musicPulse = document.getElementById('musicPulse');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                bgMusic.pause();
+                isPlaying = false;
+                musicIcon.classList.remove('fa-spin');
+                musicIcon.className = 'fa-solid fa-music';
+                musicPulse.style.opacity = '0';
+                musicToggleBtn.classList.remove('bg-morandi-tan', 'text-white');
+                musicToggleBtn.classList.add('bg-white/90', 'text-morandi-accent');
+            } else {
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    musicIcon.className = 'fa-solid fa-compact-disc fa-spin';
+                    musicPulse.style.opacity = '1';
+                    musicToggleBtn.classList.remove('bg-white/90', 'text-morandi-accent');
+                    musicToggleBtn.classList.add('bg-morandi-tan', 'text-white');
+                }).catch(e => {
+                    console.log("Autoplay or play blocked:", e);
+                });
+            }
+        }
     </script>
 </body>
 </html>
