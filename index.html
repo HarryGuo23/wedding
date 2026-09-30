@@ -430,7 +430,7 @@
                     <textarea name="entry.194046775"
                               id="entry_194046775"
                               rows="4"
-                              placeholder="請留下您想對海綿寶寶與派大星說的話..."
+                              placeholder="請留下您想對Christy與Audy說的話..."
                               class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-morandi-tan focus:ring-2 focus:ring-morandi-tan/20 outline-none transition-all text-stone-700 bg-white resize-none"></textarea>
                 </div>
 
@@ -471,6 +471,44 @@
         </div>
     </div>
 
+
+     <!-- 右下角懸浮音樂播放器 -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-center">
+        <!-- 音樂元素：透過 GitHub 放音檔時，請將下方 src 替換為您的 GitHub 音樂 Raw 檔網址 -->
+        <audio id="bgMusic" loop preload="auto">
+            <source src="music.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- 播放控制按鈕 (帶旋轉動畫與柔和陰影) -->
+        <button id="musicToggleBtn" onclick="toggleMusic()" class="w-14 h-14 rounded-full bg-white/90 backdrop-blur-md border border-morandi-tan/40 text-morandi-accent shadow-xl flex items-center justify-center hover:bg-morandi-cream transition-all duration-300 focus:outline-none group relative">
+            <div id="musicIconContainer" class="text-xl">
+                <i id="musicIcon" class="fa-solid fa-music group-hover:scale-110 transition-transform"></i>
+            </div>
+            <!-- 音樂播放時的光環特效 -->
+            <span id="musicPulse" class="absolute inset-0 rounded-full border border-morandi-tan/60 animate-ping opacity-0 pointer-events-none"></span>
+        </button>
+    </div>
+
+    <script>
+        function showSuccessModal() {
+            const modal = document.getElementById('successModal');
+            const card = document.getElementById('modalCard');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-95');
+            card.classList.add('scale-100');
+
+            document.getElementById('weddingForm').reset();
+            window.submitted = false;
+            checkDynamicFields();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            const card = document.getElementById('modalCard');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+        }
     <script>
         // 您的 Google 表單實際提交網址 (Form Action URL)
         const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf4XnPMyAH9fFJDda1yeXttXAz9Is5_1ma-dmsyR1MkhoksiQ/formResponse";
