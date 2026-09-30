@@ -472,7 +472,7 @@
     </div>
 
 
-     <!-- 右下角懸浮音樂播放器 -->
+      <!-- 右下角懸浮音樂播放器 -->
     <div class="fixed bottom-6 right-6 z-50 flex items-center">
         <!-- 音樂元素：透過 GitHub 放音檔時，請將下方 src 替換為您的 GitHub 音樂 Raw 檔網址 -->
         <audio id="bgMusic" loop preload="auto">
@@ -499,55 +499,6 @@
 
             document.getElementById('weddingForm').reset();
             window.submitted = false;
-            checkDynamicFields();
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('successModal');
-            const card = document.getElementById('modalCard');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            card.classList.remove('scale-100');
-            card.classList.add('scale-95');
-        }
-    <script>
-        // 您的 Google 表單實際提交網址 (Form Action URL)
-        const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf4XnPMyAH9fFJDda1yeXttXAz9Is5_1ma-dmsyR1MkhoksiQ/formResponse";
-
-        document.getElementById('weddingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> 正在傳送回函...';
-
-            // 收集表單資料
-            const formData = new FormData(this);
-
-            // 以 no-cors 模式發送 POST 請求至 Google Forms
-            fetch(GOOGLE_FORM_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: formData
-            }).then(() => {
-                // 無論 Google 返回何種 CORS 狀態，no-cors 下成功完成請求即代表表單送達後台
-                showSuccessModal();
-            }).catch(err => {
-                console.error('Submission error:', err);
-                // 即使發生網路例外，為確保使用者體驗良好，仍跳出成功視窗並重置
-                showSuccessModal();
-            });
-        });
-
-        function showSuccessModal() {
-            const modal = document.getElementById('successModal');
-            const card = document.getElementById('modalCard');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            card.classList.remove('scale-95');
-            card.classList.add('scale-100');
-
-            document.getElementById('weddingForm').reset();
-            const btn = document.getElementById('submitBtn');
-            btn.disabled = false;
-            btn.innerHTML = '<span>確認送出回函</span><i class="fa-solid fa-paper-plane ml-2 text-sm"></i>';
             checkDynamicFields();
         }
 
@@ -606,8 +557,7 @@
             });
         });
 
-
-     // 動態連動邏輯：無法出席時隱藏人數與飲食
+        // 動態連動邏輯：無法出席時隱藏人數與飲食
         const attendanceSelect = document.getElementById('entry_473265525');
         const attendanceDetails = document.getElementById('attendance-details');
 
